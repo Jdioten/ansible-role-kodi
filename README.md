@@ -17,6 +17,7 @@ Copyright
 
 All files in this Ansible role are
 Copyright © 2017 Gregor Riepl <onitake@gmail.com>
+
 All rights reserved.
 
 Released under the ISC license.
@@ -35,7 +36,7 @@ Create a file named `install_roles.yml` in your Ansible project
 with the following contents:
 
 ```yaml
-- src: https://github.com/onitake/ansible-role-kode
+- src: https://github.com/onitake/ansible-role-kodi
   name: kodi
 ```
 
