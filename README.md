@@ -45,6 +45,14 @@ Install the role:
 ansible-galaxy install -r install_roles.yml
 ```
 
+To use the role in a playbook, simply specify it as:
+
+```yaml
+- hosts: kodi
+  roles:
+  - kodi
+```
+
 
 Variables
 ---------
