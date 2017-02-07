@@ -1,0 +1,58 @@
+---
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items:
+    - kodi
+    - xorg
+    - dbus-x11
+    - alsa-utils
+    - lirc
+
+- name: install legacy Xorg wrapper
+  package:
+    name: xserver-xorg-legacy
+    state: installed
+
+- name: create kodi group
+  group:
+    name: "{{ kodi_group }}"
+
+- name: create kodi user
+  user:
+    name: "{{ kodi_user }}"
+    group: "{{ kodi_group }}"
+    groups: video,audio
+    append: yes
+    createhome: yes
+
+- name: allow Xorg start by anyone
+  template:
+    src: Xwrapper.config.j2
+    dest: /etc/X11/Xwrapper.config
+    owner: root
+    group: root
+    mode: 0644
+
+- name: allow restart/shutdown by kodi user
+  template:
+    src: kodi.pkla.j2
+    dest: /etc/polkit-1/localauthority/50-local.d/kodi.pkla 
+    owner: root
+    group: root
+    mode: 0644
+
+- name: install kodi service file
+  template:
+    src: kodi.service.j2
+    dest: /etc/systemd/system/kodi.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: enable kodi service
+  service:
+    name: kodi
+    enabled: yes
+    state: started
