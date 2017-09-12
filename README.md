@@ -27,6 +27,17 @@ Mostly based on:
 http://www.richud.com/wiki/Ubuntu_Minimal_KODI_Install
 
 
+Requirements
+------------
+
+The role is intended for Debian-based Linux distributions.
+At least Debian jessie is required.
+Other distributions may work, but have not been tested so far.
+
+Other than that, Ansible 2.1 or later is required. If you plan to install
+Kodi on a remote machine, you need to establish SSH connectivity first.
+
+
 Usage
 -----
 
